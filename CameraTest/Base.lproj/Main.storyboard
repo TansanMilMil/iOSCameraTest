@@ -10,43 +10,89 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="CameraTest" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tKg-Bi-PMa">
-                                <rect key="frame" x="100" y="120" width="568" height="784"/>
-                                <color key="backgroundColor" systemColor="systemGray2Color" red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fd3-e1-xSu">
-                                <rect key="frame" x="60" y="61" width="648" height="31.5"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3He-Te-Tp1">
+                                <rect key="frame" x="318" y="490" width="132" height="44"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <state key="normal" title="カメラ起動">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Pa2-jR-Ald" kind="presentation" id="kSF-iA-uUK"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="fd3-e1-xSu" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="60" id="4Zt-NK-BPF"/>
-                            <constraint firstItem="fd3-e1-xSu" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="61" id="Knj-EJ-W32"/>
-                            <constraint firstItem="fd3-e1-xSu" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="61" id="NYo-LY-Up4"/>
-                            <constraint firstItem="tKg-Bi-PMa" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="aKH-zO-lTJ"/>
-                            <constraint firstItem="tKg-Bi-PMa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="100" id="iJd-d2-C7r"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fd3-e1-xSu" secondAttribute="trailing" constant="60" id="lVQ-hx-nuc"/>
-                            <constraint firstItem="tKg-Bi-PMa" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="tLe-Yf-TGG"/>
-                            <constraint firstItem="tKg-Bi-PMa" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="120" id="xbh-zb-k4i"/>
+                            <constraint firstItem="3He-Te-Tp1" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="490" id="fCG-tU-n3j"/>
+                            <constraint firstItem="3He-Te-Tp1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="318" id="ti1-Xm-ibr"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="-649" y="129"/>
+        </scene>
+        <!--Face Detection Controller-->
+        <scene sceneID="kzk-42-T9K">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BmC-9s-oQH" sceneMemberID="firstResponder"/>
+                <viewController id="Pa2-jR-Ald" customClass="FaceDetectionController" customModule="CameraTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5yI-Lg-fO7">
+                        <rect key="frame" x="0.0" y="0.0" width="712" height="984"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="roX-WI-VQv">
+                                <rect key="frame" x="100" y="120" width="512" height="744"/>
+                                <color key="backgroundColor" systemColor="systemGray2Color" red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DQK-Iz-QCZ">
+                                <rect key="frame" x="60" y="61" width="592" height="23"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qbv-H1-AMc">
+                                <rect key="frame" x="672.5" y="12" width="19.5" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <state key="normal" image="xmark.square" catalog="system"/>
+                                <connections>
+                                    <action selector="closeView:" destination="Pa2-jR-Ald" eventType="touchUpInside" id="L2W-qR-517"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="DQK-Iz-QCZ" firstAttribute="top" secondItem="KUK-hl-okr" secondAttribute="top" constant="61" id="03t-us-Cgs"/>
+                            <constraint firstItem="roX-WI-VQv" firstAttribute="centerX" secondItem="5yI-Lg-fO7" secondAttribute="centerX" id="5AJ-zH-xms"/>
+                            <constraint firstItem="Qbv-H1-AMc" firstAttribute="top" secondItem="KUK-hl-okr" secondAttribute="top" constant="12" id="Ho6-kt-5Xp"/>
+                            <constraint firstItem="roX-WI-VQv" firstAttribute="top" secondItem="KUK-hl-okr" secondAttribute="top" constant="120" id="RaS-f5-4to"/>
+                            <constraint firstItem="KUK-hl-okr" firstAttribute="trailing" secondItem="DQK-Iz-QCZ" secondAttribute="trailing" constant="60" id="aEM-WZ-YOe"/>
+                            <constraint firstItem="roX-WI-VQv" firstAttribute="centerY" secondItem="5yI-Lg-fO7" secondAttribute="centerY" id="b6i-wx-rfd"/>
+                            <constraint firstItem="roX-WI-VQv" firstAttribute="leading" secondItem="KUK-hl-okr" secondAttribute="leading" constant="100" id="nzi-7p-rEY"/>
+                            <constraint firstItem="DQK-Iz-QCZ" firstAttribute="leading" secondItem="KUK-hl-okr" secondAttribute="leading" constant="60" id="p7Y-Jo-9LP"/>
+                            <constraint firstItem="DQK-Iz-QCZ" firstAttribute="top" secondItem="KUK-hl-okr" secondAttribute="top" constant="61" id="tcI-2L-80Z"/>
+                            <constraint firstItem="KUK-hl-okr" firstAttribute="trailing" secondItem="Qbv-H1-AMc" secondAttribute="trailing" constant="20" id="vdO-hI-fiK"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="KUK-hl-okr"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="wWy-jj-dBd"/>
                     <connections>
-                        <outlet property="cameraView" destination="tKg-Bi-PMa" id="M4n-Qo-qqp"/>
-                        <outlet property="imageState" destination="fd3-e1-xSu" id="pC5-f9-Jdz"/>
+                        <outlet property="cameraView" destination="roX-WI-VQv" id="cio-tG-pTX"/>
+                        <outlet property="imageState" destination="DQK-Iz-QCZ" id="I5K-xt-Z2Y"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="131.25" y="129.4921875"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="xmark.square" catalog="system" width="128" height="114"/>
+    </resources>
 </document>

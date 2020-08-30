@@ -18,7 +18,12 @@ public class FaceTracker: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
     var view: UIView
     private var findface: (_ arr: Array<CGRect>) -> Void
     let imageState: UILabel
+    /** 顔検知回数*/
     var detectFaceCount: Int = 0
+    /** 認証可能な顔の角度の範囲　*/
+    let validFaceAngleRange: ClosedRange<Float> = -2.5...2.5
+    /** 認証完了に必要な成功回数*/
+    let detectEndCount: Int = 10
     
     required init (viewForDisplay: UIView, findface: @escaping (_ arr: Array<CGRect>) -> Void, imageState: UILabel) {
         self.view = viewForDisplay
@@ -98,51 +103,75 @@ public class FaceTracker: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
             let ciimage: CIImage! = CIImage(image: image)
             
             // 顔を検知する。処理速度を重視し、精度は低く設定。
-            let detector: CIDetector = CIDetector(ofType: CIDetectorTypeFace, context: nil, options: [CIDetectorAccuracy: CIDetectorAccuracyHigh])!
-            let faces = detector.features(in: ciimage)
+            let detector: CIDetector = CIDetector(
+                ofType: CIDetectorTypeFace,
+                context: nil,
+                options: [
+                    CIDetectorAccuracy: CIDetectorAccuracyHigh
+                ])!
+            let faces = detector.features(in: ciimage, options: [CIDetectorEyeBlink: true])
             
             // facesに顔として認識した画像が格納される
             if faces.count == 0 {
-                detectFaceCount = 0
-                self.imageState.text = "正面を向いて顔をカメラに写してください"
+                ResetDetectCount("正面を向いて顔全体をカメラに写してください")
                 return
             } else if faces.count == 1 {
-                var _ : CIFaceFeature = CIFaceFeature()
-                for feature in faces {
-                    let face = feature as! CIFaceFeature
-                    if (!face.hasMouthPosition) {
-                        self.imageState.text = "カメラには顔全体を写してください(口が写っていない)"
-                        return
-                    }
-                    if (!face.hasFaceAngle) {
-                        self.imageState.text = "カメラには正面を向いた顔を写してください(角度がおかしい)"
-                        return
-                    }
-                    if (!face.hasLeftEyePosition) {
-                        self.imageState.text = "カメラには顔全体を写してください(左目が写っていない)"
-                        return
-                    }
-                    if (!face.hasRightEyePosition) {
-                        self.imageState.text = "カメラには顔全体を写してください(右目が写っていない)"
-                        return
-                    }
-                    if (face.leftEyeClosed) {
-                        self.imageState.text = "両目を開いてください(左目が閉じている)"
-                        return
-                    }
-                    if (face.rightEyeClosed) {
-                        self.imageState.text = "両目を開いてください(右目が閉じている)"
-                        return
-                    }
+                //var _ : CIFaceFeature = CIFaceFeature()
+                let face = faces[0] as! CIFaceFeature
+                if (!face.hasMouthPosition) {
+                    ResetDetectCount("カメラには顔全体を写してください(口が写っていない)")
+                    return
                 }
-                detectFaceCount += 1
-                self.imageState.text = "顔を検知しました。そのままお待ちください。(\(detectFaceCount))"
+                if (!face.hasFaceAngle) {
+                    ResetDetectCount("カメラには正面を向いた顔を写してください(角度がおかしい)")
+                    return
+                }
+                if (!face.hasLeftEyePosition) {
+                    ResetDetectCount("カメラには顔全体を写してください(左目が写っていない)")
+                    return
+                }
+                if (!face.hasRightEyePosition) {
+                    ResetDetectCount("カメラには顔全体を写してください(右目が写っていない)")
+                    return
+                }
+                if (face.leftEyeClosed) {
+                    ResetDetectCount("両目を開いてください(左目が閉じている)")
+                    return
+                }
+                if (face.rightEyeClosed) {
+                    ResetDetectCount("両目を開いてください(右目が閉じている)")
+                    return
+                }
+                if (!validFaceAngleRange.contains(face.faceAngle)) {
+                    ResetDetectCount("カメラには正面を向いた顔を写してください(角度がおかしい)")
+                    return
+                }
+                
+                if (detectFaceCount == detectEndCount) {
+                    AudioServicesPlaySystemSound(1002)
+                }
+                if (detectFaceCount >= detectEndCount) {
+                    DetectOk("顔認識OK😎\n(成功回数:\(detectFaceCount)/角度:\(face.faceAngle))")
+                } else {
+                    DetectOk("顔を検知しました。そのままお待ちください。\n(成功回数:\(detectFaceCount)/角度:\(face.faceAngle))")
+                }
             } else if faces.count >= 2 {
-                detectFaceCount = 0
-                self.imageState.text = "カメラには１人の顔だけが写るようにしてください"
+                ResetDetectCount("カメラには１人の顔だけが写るようにしてください")
                 return
             }
             return
         })
+    }
+    
+    private func DetectOk(_ message: String) {
+        detectFaceCount += 1
+        self.imageState.textColor = UIColor.systemGreen
+        self.imageState.text = message
+    }
+    
+    private func ResetDetectCount(_ message: String) {
+        detectFaceCount = 0
+        self.imageState.textColor = UIColor.label
+        self.imageState.text = message
     }
 }
