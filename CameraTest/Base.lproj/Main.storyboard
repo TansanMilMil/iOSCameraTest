@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="ipad9_7" orientation="portrait" layout="fullscreen" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="CameraTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tKg-Bi-PMa">
+                                <rect key="frame" x="100" y="120" width="568" height="784"/>
+                                <color key="backgroundColor" systemColor="systemGray2Color" red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fd3-e1-xSu">
+                                <rect key="frame" x="60" y="61" width="648" height="31.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="fd3-e1-xSu" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="60" id="4Zt-NK-BPF"/>
+                            <constraint firstItem="fd3-e1-xSu" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="61" id="Knj-EJ-W32"/>
+                            <constraint firstItem="fd3-e1-xSu" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="61" id="NYo-LY-Up4"/>
+                            <constraint firstItem="tKg-Bi-PMa" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="aKH-zO-lTJ"/>
+                            <constraint firstItem="tKg-Bi-PMa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="100" id="iJd-d2-C7r"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fd3-e1-xSu" secondAttribute="trailing" constant="60" id="lVQ-hx-nuc"/>
+                            <constraint firstItem="tKg-Bi-PMa" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="tLe-Yf-TGG"/>
+                            <constraint firstItem="tKg-Bi-PMa" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="120" id="xbh-zb-k4i"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="cameraView" destination="tKg-Bi-PMa" id="M4n-Qo-qqp"/>
+                        <outlet property="imageState" destination="fd3-e1-xSu" id="pC5-f9-Jdz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="131.25" y="129.4921875"/>
+        </scene>
+    </scenes>
+</document>
