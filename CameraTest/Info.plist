@@ -55,6 +55,8 @@
 	</array>
 	<key>NSCameraUsageDescription</key>
 	<string>Authenticate user face data.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Authenticate user face data.</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

@@ -6,6 +6,8 @@ class FaceDetectionController: UIViewController {
     var faceTracker: FaceTracker? = nil
     @IBOutlet weak var cameraView: UIView!
     @IBOutlet weak var imageState: UILabel!
+    @IBOutlet weak var facePosition: UILabel!
+    @IBOutlet weak var okImageView: UIImageView!
     var destroyViewAsync: DispatchWorkItem = DispatchWorkItem() {}
     
     var rectView = UIView()
@@ -23,7 +25,9 @@ class FaceDetectionController: UIViewController {
                 arr in let rect = arr[0]
                 self.rectView.frame = rect
             },
-            imageState: self.imageState
+            imageState: self.imageState,
+            facePosition: self.facePosition,
+            okImageView: self.okImageView
         )
         // 非同期で一定時間後にViewを閉じる
         destroyViewAsync = DispatchWorkItem() {
